@@ -1,7 +1,8 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.18.4)
+
 PROJECT(wifi_scanner)
  
-SET (CMAKE_MODULE_PATH "/usr/share/cmake/Modules")
+SET(CMAKE_MODULE_PATH "/usr/share/cmake/Modules")
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -18,7 +19,7 @@ FIND_PATH(LIBIW_INCLUDE_DIR NAMES iwlib.h)
 INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/include ${LIBIW_INCLUDE_DIR})
 
 # General
-ADD_LIBRARY(wifi_scanner SHARED ${PROJECT_SOURCE_DIR}/src/wifi_scanner.cpp)
+ADD_LIBRARY(wifi_scanner STATIC ${PROJECT_SOURCE_DIR}/src/wifi_scanner.cpp)
 TARGET_LINK_LIBRARIES( wifi_scanner ${LIBIW_LIBRARY} )
 ADD_EXECUTABLE( test_wifi_scanner ${PROJECT_SOURCE_DIR}/src/test_wifi_scanner.cpp  )
 TARGET_LINK_LIBRARIES( test_wifi_scanner wifi_scanner)
